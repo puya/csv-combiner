@@ -3,7 +3,7 @@
 import pandas as pd
 from pathlib import Path
 
-def combine_csv_files(folder_path, output_file, preview_lines, header_line):
+def combine_csv_files(folder_path, output_file, preview_lines, header_line, selected_columns=None):
     """
     Combine all CSV files in the specified directory, adding a source filename column.
     
@@ -12,6 +12,7 @@ def combine_csv_files(folder_path, output_file, preview_lines, header_line):
         output_file: Path to output file
         preview_lines: Lines from the preview of the first file
         header_line: Which line contains the headers (0 for no headers)
+        selected_columns: List of columns to include in output (None for all columns)
     
     Returns:
         bool: True if successful, False otherwise
@@ -66,8 +67,23 @@ def combine_csv_files(folder_path, output_file, preview_lines, header_line):
     # Combine all dataframes
     combined_df = pd.concat(dfs, ignore_index=True)
     
+    # Filter columns if specified
+    if selected_columns:
+        # Check which selected columns actually exist in the dataframe
+        existing_columns = [col for col in selected_columns if col in combined_df.columns]
+        
+        if len(existing_columns) < len(selected_columns):
+            missing = set(selected_columns) - set(existing_columns)
+            print(f"Warning: Some selected columns don't exist in all files: {', '.join(missing)}")
+        
+        if existing_columns:
+            combined_df = combined_df[existing_columns]
+        else:
+            print("Warning: None of the selected columns exist in the files. Using all columns.")
+    
     # Save to a new CSV file
     combined_df.to_csv(output_file, index=False)
     
     print(f"\nCombined {len(dfs)} files into {output_file}")
+    print(f"Output contains {len(combined_df.columns)} columns and {len(combined_df)} rows.")
     return True 

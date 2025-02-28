@@ -40,12 +40,23 @@ csv-combiner/
 - Manages user interactions
 - Displays options and menus
 - Collects and validates user input
+- Handles column selection interface
 
 ### csv_processor.py
 - Handles CSV file reading and processing
 - Combines multiple CSV files
 - Adds source tracking
 - Manages pandas operations
+- Filters columns based on user selection
+
+## Features
+
+1. **Basic CSV Combining**: Combines multiple CSV files with source tracking
+2. **Header Detection**: Intelligently handles files with or without headers
+3. **Column Selection**: Allows users to select which columns to include in the output
+   - Supports individual column selection
+   - Supports range selection (e.g., "1-5")
+   - Supports custom column ordering (e.g., "3,1-2" to reorder columns)
 
 ## Design Principles
 
@@ -62,8 +73,9 @@ csv-combiner/
 3. User selects a subfolder containing CSV files
 4. Application previews the first file
 5. User specifies which line contains headers
-6. Application processes and combines all CSV files
-7. Combined file is saved with source tracking
+6. User selects which columns to include and their order
+7. Application processes and combines all CSV files
+8. Combined file is saved with source tracking and selected columns
 
 ## Adding New Features
 
