@@ -38,21 +38,6 @@ def get_subfolder_choice(base_folder):
         except ValueError:
             print("Please enter a valid number")
 
-def get_skip_rows():
-    """Ask user how many rows to skip."""
-    while True:
-        try:
-            skip_rows = input("\nHow many rows to skip from the beginning? (default: 0): ")
-            if skip_rows == "":
-                return 0
-            skip_rows = int(skip_rows)
-            if skip_rows >= 0:
-                return skip_rows
-            else:
-                print("Please enter a non-negative number")
-        except ValueError:
-            print("Please enter a valid number")
-
 def get_output_filename(folder_name):
     """Generate a unique output filename based on the folder name."""
     base_name = f"{folder_name}-combined.csv"
@@ -199,5 +184,3 @@ if __name__ == "__main__":
         print("\nOperation cancelled by user.")
     except Exception as e:
         print(f"\nAn unexpected error occurred: {e}")
-    
-    # Removed the input() line so the program exits immediately 
