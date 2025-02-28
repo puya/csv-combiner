@@ -1,17 +1,18 @@
-[project]
-name = "csv-combine"
+[tool.poetry]
+name = "csv-combiner"
 version = "0.1.0"
-description = ""
-authors = [
-    {name = "Puya Khalili",email = "pooya.khalili@gmail.com"}
-]
+description = "A tool to combine multiple CSV files with source tracking"
+authors = ["Puya Khalili <pooya.khalili@gmail.com>"]
 readme = "README.md"
-requires-python = ">=3.13"
-dependencies = [
-    "pandas (>=2.2.3,<3.0.0)"
-]
+packages = [{include = "csv_combiner", from = "src"}]
 
+[tool.poetry.dependencies]
+python = ">=3.8"
+pandas = "^2.0.0"
+
+[tool.poetry.scripts]
+csv-combiner = "csv_combiner.main:main"
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

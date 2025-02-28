@@ -21,7 +21,7 @@ This project uses Poetry for dependency management.
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/csv-combiner.git
+   git clone https://github.com/puya/csv-combiner.git
    cd csv-combiner
    ```
 
@@ -34,7 +34,7 @@ This project uses Poetry for dependency management.
 
 1. Run the script:
    ```
-   poetry run python combine_csv.py
+   poetry run csv-combiner
    ```
 
 2. Follow the interactive prompts:
